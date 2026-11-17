@@ -218,7 +218,7 @@ export default function ProjectPage() {
               <ol className="max-h-[36rem] divide-y divide-line overflow-y-auto">
                 {snap.events.map((e) => (
                   <li key={e.id} className="flex gap-3 px-4 py-2.5 text-sm">
-                    <span className="w-16 shrink-0 text-xs text-muted">{new Date(e.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</span>
+                    <span className="w-24 shrink-0 whitespace-nowrap pt-0.5 text-xs tabular-nums text-muted">{new Date(e.created_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}</span>
                     <span className="min-w-0">{e.agent && <><AgentTag agent={e.agent} /> · </>}{e.message}</span>
                   </li>
                 ))}

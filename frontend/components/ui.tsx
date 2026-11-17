@@ -65,7 +65,7 @@ export const AGENT_COLORS: Record<string, string> = {
 };
 
 export function AgentTag({ agent, name }: { agent: string; name?: string }) {
-  const label = name ?? agent[0].toUpperCase() + agent.slice(1);
+  const label = name ?? (agent === "qa" ? "QA" : agent[0].toUpperCase() + agent.slice(1));
   return (
     <span className="inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-medium text-ink">
       <span className="size-2 rounded-sm" style={{ background: AGENT_COLORS[agent] ?? "#6b665c" }} />
