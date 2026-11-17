@@ -96,7 +96,7 @@ export function WorkflowGraph({
             >
               <span className="flex items-center justify-between gap-2 text-[11px]">
                 <span className="flex items-center gap-1.5 font-medium text-muted">
-                  <span className="size-2 rounded-sm" style={{ background: AGENT_COLORS[t.agent] }} />
+                  <span className="size-2 rounded-full" style={{ background: AGENT_COLORS[t.agent] }} />
                   {t.key} · {t.agent}
                 </span>
                 <span className="flex items-center gap-1 font-semibold" style={{ color: t.state === "waiting" ? "var(--color-idle)" : s.border }}>

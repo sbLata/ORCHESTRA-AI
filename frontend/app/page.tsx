@@ -53,40 +53,41 @@ export default function DashboardPage() {
 
   return (
     <Shell>
-      <Card className="p-5">
+      <section className="brand-gradient rounded-2xl p-6 text-white shadow-sm sm:p-8">
         <form onSubmit={create}>
-          <label htmlFor="objective" className="font-display text-xl font-semibold">
+          <label htmlFor="objective" className="block text-2xl font-bold tracking-tight sm:text-3xl">
             What do you want done?
           </label>
-          <p className="mt-1 text-sm text-muted">
+          <p className="mt-2 max-w-2xl text-sm text-white/85">
             Describe the outcome. The orchestrator plans the work, you approve the plan, and the agent team executes it.
           </p>
           <textarea
             id="objective" required minLength={10} rows={3} value={objective}
             onChange={(e) => setObjective(e.target.value)} placeholder={EXAMPLE}
-            className="mt-3 w-full rounded-lg border border-line bg-paper px-3 py-2 text-sm"
+            className="mt-4 w-full rounded-xl border-0 bg-white px-4 py-3 text-sm text-ink shadow-lg placeholder:text-muted/70 focus-visible:outline-white"
           />
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted">
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white/90">
               <label className="flex items-center gap-2">
                 Budget
-                <span className="flex items-center rounded-lg border border-line bg-paper pl-2">
+                <span className="flex items-center rounded-lg bg-white/15 pl-2 ring-1 ring-white/30">
                   $
                   <input type="number" min={1} max={1000} step={1} value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="w-16 bg-transparent px-1 py-1 text-ink" />
+                    className="w-16 bg-transparent px-1 py-1 text-white focus-visible:outline-white" />
                 </span>
               </label>
-              <button type="button" className="text-accent underline" onClick={() => setObjective(EXAMPLE)}>
+              <button type="button" className="underline underline-offset-2 hover:text-white" onClick={() => setObjective(EXAMPLE)}>
                 Use the example
               </button>
             </div>
-            <Button variant="primary" type="submit" disabled={busy} className="px-4 py-2">
+            <button type="submit" disabled={busy}
+              className="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-accent shadow-sm transition-colors hover:bg-accent-soft disabled:opacity-60 focus-visible:outline-white">
               {busy ? "Creating…" : "Plan this objective"}
-            </Button>
+            </button>
           </div>
         </form>
-      </Card>
+      </section>
 
       <div className="mt-4"><ErrorNote>{error}</ErrorNote></div>
 

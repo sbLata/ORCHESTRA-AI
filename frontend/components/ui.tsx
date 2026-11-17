@@ -55,13 +55,13 @@ export function Badge({ status, label }: { status: string; label?: string }) {
 }
 
 export const AGENT_COLORS: Record<string, string> = {
-  research: "#2563a8",
-  planning: "#7c4a9e",
-  execution: "#1f5f5b",
-  qa: "#a8742a",
-  supervisor: "#8a3b4a",
-  orchestrator: "#1d1b16",
-  user: "#6b665c",
+  research: "#0e9fb5",
+  planning: "#8b5cf6",
+  execution: "#3f5bf6",
+  qa: "#e08a00",
+  supervisor: "#e0457b",
+  orchestrator: "#101828",
+  user: "#6b7689",
 };
 
 export function AgentTag({ agent, name }: { agent: string; name?: string }) {
@@ -78,7 +78,7 @@ export function Button({
   variant = "secondary", className = "", ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" | "danger" | "ghost" }) {
   const styles = {
-    primary: "bg-accent text-white hover:bg-accent/90",
+    primary: "bg-accent text-white shadow-sm hover:bg-accent-strong",
     secondary: "border border-line bg-card text-ink hover:bg-idle-soft",
     danger: "border border-bad/30 bg-card text-bad hover:bg-bad-soft",
     ghost: "text-muted hover:bg-idle-soft hover:text-ink",
@@ -139,6 +139,20 @@ export function useMeta(): Meta | null {
   return meta;
 }
 
+export function Logo({ light = false }: { light?: boolean }) {
+  return (
+    <span className={`inline-flex items-center gap-2 text-[17px] font-bold tracking-tight ${light ? "text-white" : "text-ink"}`}>
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <rect width="26" height="26" rx="7" fill={light ? "#ffffff" : "#3f5bf6"} />
+        <g fill="none" stroke={light ? "#3f5bf6" : "#ffffff"} strokeWidth="2" strokeLinecap="round">
+          <path d="M7 13h4M15 8h4M15 18h4M11 13c2 0 2-5 4-5M11 13c2 0 2 5 4 5" />
+        </g>
+      </svg>
+      <span>orchestra<span className={light ? "text-white/70" : "text-accent"}>.ai</span></span>
+    </span>
+  );
+}
+
 export function Shell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const meta = useMeta();
@@ -146,9 +160,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
     <>
       <header className="border-b border-line bg-card">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <Link href="/" className="font-display text-lg font-semibold tracking-wide">
-            ORCHESTRA <span className="text-brass">AI</span>
-          </Link>
+          <Link href="/" aria-label="Orchestra AI home"><Logo /></Link>
           <div className="flex items-center gap-3">
             {meta && <span className="hidden text-xs text-muted sm:inline">Engine: {meta.model}</span>}
             <Button variant="ghost" onClick={() => { auth.clear(); router.replace("/login"); }}>
